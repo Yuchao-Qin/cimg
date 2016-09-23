@@ -1,0 +1,6 @@
+{
+  "name": "Cimg",
+  "tagline": "移动端网站裁剪（手势操作）上传图片",
+  "body": "### 移动端网站裁剪（手势操作）上传图片\r\n插件功能：用户可任意旋转放缩拖曳图片对图片进行裁剪再异步上传图片，实时显示上传状态。\r\n#### [在线demo](https://vytao.github.io/cimg/)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
