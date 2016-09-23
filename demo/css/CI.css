@@ -1,0 +1,23 @@
+.ci-imgbox{
+	position:fixed;
+	top:50%;
+	left:2em;
+	right:2em;
+	-webkit-transform:translate(0,-50%);
+	-moz-transform:translate(0,-50%);
+	-o-transform:translate(0,-50%);
+	transform:translate(0,-50%);
+}
+.ci-imgbox img{
+	width: 100%;
+}
+.ci-clipbox{
+	position: fixed;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
+	-o-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+	box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+}
