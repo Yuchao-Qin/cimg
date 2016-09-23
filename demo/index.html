@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" name="viewport">
+<title>示例</title>
+<link rel="stylesheet" href="css/CI.css">
+<style>
+	html {
+		font-size: 62.5%;
+		height: 100%;
+	}
+
+	body{
+		height:100%;
+	}
+	
+	h1 {
+		font-size: 4.5rem;
+		position: relative;
+		z-index: 3;
+		top: 50%;
+		display:none;
+	}
+	
+	input{
+		position:absolute;
+		bottom:40px;
+		z-index:5;
+	}
+
+	p{
+		position:relative;
+		z-index:3;
+		background:#fff;
+	}
+
+	button{
+		display:block;
+		position:absolute;
+		z-index:1;
+		bottom:10px;
+		z-index:2;
+	}
+
+	body>img{
+		position:relative;
+		z-index:2
+	}
+
+	.pre{
+		position:relative;
+		z-index:2;
+		background:#fff;
+	}
+
+	canvas{
+		width:100%;
+	}
+
+	.clip{
+		left:8px;
+	}
+	.upload{
+		left:80px;
+	}
+	.loadding{
+		display:none;
+		width: 100%;
+		height: 6px;
+		position:relative;
+		top:50%;
+		transform:translateY(-50%);
+		box-shadow: 0 0 0 9999px #e6e6e6;
+		z-index:2
+	}
+	.loadding:after{
+		content:"";
+		position:absolute;
+		top:0;
+		left:0;
+		height:6px;
+		width:100px;
+		background:#22d222;
+		animation:loadding infinite alternate 1s;
+		-webkit-animation:loadding infinite alternate 1s;;
+		-moz-animation:loadding infinite alternate 1s;
+	}
+	@-webkit-keyframes loadding{
+		from{
+			left:0;
+		}
+		to{
+			left:calc(100% - 100px);
+		}
+	}
+	@-moz-keyframes loadding{
+		from{
+			left:0;
+		}
+		to{
+			left:calc(100% - 100px);
+		}
+	}
+	@keyframes loadding{
+		from{
+			left:0;
+		}
+		to{
+			left:calc(100% - 100px);
+		}
+	}
+</style>
+</head>
+
+<body>
+	<h1>LOADDING</h1>
+	<h2 class="debug"></h2>
+	<h2 class="pre"></h2>
+	<div class="loadding"></div>
+	<input type="file">
+	<button class="clip">剪切</button>
+	<button class="upload">上传</button>
+	<img src="" alt="" class="prev">
+	<script src="js/zepto.min.js"></script>
+	<script src="js/hammer.min.js"></script>
+	<script src="js/newCI.js"></script>
+
+	<script>
+		CI.init({
+			fileInput: "input",
+			imgBox: "body",
+			touchCtrl: "body",
+			readStart: function(){
+				$("h1").show();
+				$(".loadding").show();
+			},
+			readEnd: function(){
+				$("h1").hide();
+				$(".loadding").hide();
+			}
+		});
+		$(".clip").on("click", function(e){
+			$("body").append(CI.clipImage());
+		});
+		$(".upload").on("click", function(e){
+			CI.upload("upload.php",{
+				beforeSend: function(){
+					$(".pre").html("开始上传...");
+				},
+				success:function(d){
+					console.log(d);
+					$(".pre").html("上传成功！");
+				},
+				error: function(){
+					$(".pre").html("上传失败！");
+				}
+			});
+		});
+	</script>
+</body>
+</html>
